@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIASC</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/28d6173d15.js"></script>
+    <link rel="icon" href="{% static 'image/icon.jpg' %}">
+
+    <style>
+        table,tr,th,td{
+            border-collapse: collapse;
+            text-align: center;
+            width: 500px;
+            height: 70px;
+            margin-left: 500px;
+            margin-top: 50px;
+        }
+        th{
+            background-color: black;
+            color: white;
+        }
+        td{
+            color: white;
+        }
+
+        .delete{
+            text-decoration: none;
+            background-color: red;
+            color: black;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body style="background-color: purple;">
+    {% if messages %}
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="text-align: center;">
+        <h1 class="text-primary">KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE</h1>
+        <h3 class="text-danger">AUTONOMOUS (NACC A<sup>++</sup>)</h3>
+        <h3 class="text-dark">ALL FEEDBACK RECORD</h3> <br>
+    </div>
+
+    <div class="row m-5 ml-5">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <table border="2px">
+                <tr>
+                    <th>S.NO</th>
+                    <th>FEEDBACK</th>
+                    <th>POINTS</th>
+                    <th>DELETE</th>
+
+                </tr>
+                {% for i in z %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+
+                    <td>{{i.FEEDBACK}}</td>
+                    <td>{{i.POINTS}}</td>
+                    <td><a class="delete" href="deletefeedback/{{i.id}}">DELETE</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        $('.alert').hide(3000);
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIASC</title>
+
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/28d6173d15.js"></script>
+    <link rel="icon" href="{% static 'image/icon.jpg' %}">
+    <style>
+    table,tr,th,td{
+        border-collapse: collapse;
+        text-align: center;
+        width: 300px;
+        height: 70px;
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    th{
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+    }
+    td{
+        color: white;
+        font-size: 20px;
+    }
+
+    .delete{
+        text-decoration: none;
+        background-color: red;
+        color: black;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+
+    
+    .update{
+        text-decoration: none;
+        background-color: rgb(24, 245, 17);
+        color: black;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+</style>
+</head>
+<body style="background-color: darkgoldenrod;">   
+    
+    {% if messages %}
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="text-align: center;">
+        <h1 class="text-primary">KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE</h1>
+        <h3 class="text-danger">AUTONOMOUS (NACC A<sup>++</sup>)</h3>
+        <h3 class="text-dark">ALL STAFF RECORD</h3> <br>
+    </div>
+    <table border="3px">
+        <tr>
+            <th>S,NO</th>
+            <th>STAFF_ROOL_NUMBER</th>
+            <th>STAFF_NAME</th>
+            <th>GENDER</th>
+            <th>DEPARTMENT</th>
+            <th>AGE</th>
+            <th>STAFF_PHONE_NUMBER</th>
+            <th>EXPERNICE</th>
+            <th>SALARY</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        {% for i in z %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.STAFF_ROOL_NUMBER}}</td>
+            <td>{{i.STAFF_NAME}}</td>
+            <td>{{i.GENDER}}</td>
+            <td>{{i.DEPARTMENT}}</td>
+            <td>{{i.AGE}}</td>
+            <td>{{i.STAFF_PHONE_NUMBER}}</td>
+            <td>{{i.EXPERNICES}}</td>
+            <td>{{i.SALARY}}</td>
+            <td><a class="update" href="updatestaff/{{i.id}}">UPDATE</a></td>
+            <td><a class="delete" href="deletestaff/{{i.id}}">DELETE</a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
+    <script>
+        $(document).ready(function(){
+            $('.alert').hide(3000);
+        });
+    </script>
+</html>

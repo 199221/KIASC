@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIASC</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="icon" href="{% static 'image/icon.jpg' %}">
+  <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+  
+
+<style>
+    label{
+      font-size: 30px;
+    }
+    .submit{
+      background-color: green;
+      color: white;
+      padding: 30px 50px;
+      text-align: center;
+      border-radius: 50px;
+      font-size: 30px;
+    }
+    .a{
+      text-decoration: none;
+      background-color: black;
+      text-align: center;
+      color: white;
+      padding: 20px 30px;
+      position: relative;
+      bottom: 60px;
+    } 
+
+</style>
+</head>
+
+
+<body style="background-color:peru">
+                       
+            {% if messages %}
+                  {% for message in messages %}
+                         <div class="alert alert-{{message.tags}}">{{message}}</div>
+                  {% endfor %}
+            {% endif %}
+                       
+  <div style="text-align: center;">
+    <h1 class="text-dark">WELCOME TO ALL</h1>
+    <h1 class="text-primary">KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE</h1>
+    <h3 class="text-danger">AUTONOMOUS (NACC A<sup>++</sup>)</h3>
+    <h4 class="text-success">Tiruchirappalli-6200003</h4><br>
+    <h3 class="text-danger">STUDENT ADDMISION FORM</h3> <br>
+  </div>
+
+
+  <form action="{% url 'addmision_store' %}" method="POST" autocomplete="off">
+  {% csrf_token %}
+    <div class="row p-5" style="position: relative; bottom: 50px;" >
+
+        
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="rn">ROOL_NUMBER</label>
+        <input type="text" placeholder="type the rool number" name="rool_number" id="rn" class="form-control" required>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="sna">STUTDENT_NAME</label>
+        <input type="text" placeholder="enter your stutdent name" name="stutdent_name" id="sna" class="form-control" required>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="fna">FATHER_NAME</label>
+        <input type="text" placeholder="enter your father name" name="father_name" id="fna" class="form-control" >
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="gn">GENDER</label><br>
+        <select name="gender" id="gn" class="form-control">
+          <option></option>
+          <option>MAILE</option>
+          <option>FEMALE</option>
+        </select>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="db">DATE OF BIRTH</label>
+        <input type="date" placeholder="enter the name" name="data_of_birth" id="db" class="form-control" required>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="ag">AGE</label>
+        <input type="number" placeholder="enter your  age" name="age" id="ag" class="form-control" >
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="re">RELIGION</label>
+        <select name="religion" id="re" class="form-control">
+          <option></option>
+          <option>HINDU</option>
+          <option>MULSIM</option>
+          <option>CHIRSTAN</option>
+          <option>OTHERS</option>
+        </select>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="bg">BLOOD GROUUP</label>
+        <input type="text" placeholder="enter you blood group" name="blood_group" id="bg" class="form-control" >
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="an">ADHAR CARD NUMBER</label>
+        <input type="number" placeholder="enter your aadhar card number" name="adhar_number" id="an" class="form-control" required>
+      </div>
+
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="fd">FIRST_GRADUATE</label>
+        <select name="first_graduate" id="fd" class="form-control">
+            <option></option>
+            <option>YES</option>
+            <option>NO</option>
+          </select>
+      </div>
+      
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="10">10<sup>th</sup> TOTAL MARK</label>
+        <input type="number" placeholder="enter your 10th mark" name="ten" id="10" class="form-control" >
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="12">12<sup>th</sup> TOTAL MARK</label>
+        <input type="number" placeholder="enter your 12th mark" name="twelve" id="12" class="form-control" >
+      </div>
+
+        
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="de">DEGREE</label>
+        <select name="degree" id="de" class="form-control">
+          <option></option>
+          <option>U.G</option>
+          <option>P.G</option>
+          <option>DR</option>
+        </select>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="co">COURSE</label>
+        <select name="course" id="co" class="form-control" required>
+          <option></option>
+          <option>B.A</option>
+          <option>B.B.A</option>
+          <option>B.COM</option>
+          <option>B.SC</option>
+          <option>B.C.A</option>
+          <option>B.E</option>
+          <option>M.C.A</option>
+          <option>M.COM</option>
+          <option>M.SC</option>
+          <option>B.ED</option>
+          <option>M.PHIL</option>
+        </select>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="sp">STUDENT_PHONE_NUMBER</label>
+        <input type="number" placeholder="enter your student phone number" name="STUDENT_PHONE_NUMBER" id="sp" class="form-control" required>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="pp">PARENTS_PHONE_NUMBER</label>
+        <input type="number" placeholder="enter your parents phone number" name="parents_PHONE_NUMBER" id="pp" class="form-control" >
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="ei">EMAIL_ID</label>
+        <input type="email" placeholder="enter your email id" name="email" id="ei" class="form-control" required>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="PA">PASSWORD</label>
+        <input type="password" placeholder="enter your email password" name="password" id="po" class="form-control" required>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+        <label for="ad">ADDRESS</label>
+        <textarea name="address" id="ad" placeholder="enter your address" class="form-control"></textarea>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+        <input class="form-control submit" type="submit" value="REGISTER" >
+      </div>
+    </div>
+  </form>
+  <div style="text-align: center;"> 
+    <a class="a" href="{% url 'home' %}">Back</a>
+  </div>
+</body>
+
+
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(5000);
+    })
+</script>
+
+</html>

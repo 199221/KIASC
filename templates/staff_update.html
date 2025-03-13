@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIASC</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="icon" href="{% static 'image/icon.jpg' %}">
+  <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+
+<style>
+    label{
+      font-size: 30px;
+    }
+    .submit{
+      background-color: green;
+      color: white;
+      padding: 30px 50px;
+      text-align: center;
+      border-radius: 50px;
+      font-size: 30px;
+    }
+    .a{
+      text-decoration: none;
+      background-color: black;
+      text-align: center;
+      color: white;
+      padding: 20px 30px;
+      position: relative;
+      bottom: 60px;
+    } 
+
+</style>
+</head>
+
+
+<body style="background-color:rgb(9, 238, 66)">
+                       
+            {% if messages %}
+                  {% for message in messages %}
+                         <div class="alert alert-{{message.tags}}">{{message}}</div>
+                  {% endfor %}
+            {% endif %}
+                       
+  <div style="text-align: center;">
+    <h1 class="text-dark">WELCOME TO ALL</h1>
+    <h1 class="text-primary">KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE</h1>
+    <h3 class="text-danger">AUTONOMOUS (NACC A<sup>++</sup>)</h3>
+    <h4 class="text-success">Tiruchirappalli-6200003</h4><br>
+    <h3 class="text-danger">STAFF ADDMISION FORM</h3> <br>
+  </div>
+
+  {% for i in a %}
+  <form action="" method="POST" autocomplete="off">
+  {% csrf_token %}
+    <div class="row p-5" style="position: relative; bottom: 50px;" >
+
+        
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="rn">STAFF_ROOL_NUMBER</label>
+        <input type="text" value="{{i.STAFF_ROOL_NUMBER}}" placeholder="Type the rool number" name="staff_rool_number" id="rn" class="form-control" required>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="sna">STAFF_NAME</label>
+        <input type="text" value="{{i.STAFF_NAME}}" placeholder="enter your staff name" name="staff_name" id="sna" class="form-control" required>
+      </div>
+
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="gn">GENDER</label><br>
+        <select name="gender" id="gn" class="form-control" >
+          <option></option>
+          <option>MALE</option>
+          <option>FEMALE</option>
+        </select>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="ag">AGE</label>
+        <input type="number" value="{{i.AGE}}" placeholder="enter your age" name="age" id="ag" class="form-control" >
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="ex">EXPERNICES</label>
+        <input type="number" value="{{i.EXPERNICES}}" placeholder="enter the expernices" name="expernices" id="ex" class="form-control" required>
+      </div>
+
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="de">DEPARTMENT</label>
+        <select name="department" id="de" class="form-control" required>
+          <option></option>
+          <option>B.A</option>
+          <option>B.B.A</option>
+          <option>B.COM</option>
+          <option>B.SC</option>
+          <option>B.C.A</option>
+          <option>B.E</option>
+          <option>M.C.A</option>
+          <option>M.COM</option>
+          <option>M.SC</option>
+          <option>B.ED</option>
+          <option>M.PHIL</option>
+        </select>
+      </div>
+
+      
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="sp">STAFF_PHONE_NUMBER</label>
+        <input type="number" value="{{i.STAFF_PHONE_NUMBER}}" placeholder="enter your phone number" name="staff_phone_number" id="sp" class="form-control" >
+      </div>
+
+
+      <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+        <label for="sa">SALARY</label>
+        <input type="number" value="{{i.SALARY}}" placeholder="enter your salary amount" name="salary" id="sa" class="form-control" >
+      </div>
+
+      
+      <div class="col-sm-12 col-md-12 col-lg-12 mb-4">
+        <input class="form-control submit" type="submit" value="REGISTER" >
+      </div>
+    </div>
+  </form>
+  {% endfor %}
+  <div style="text-align: center;"> 
+    <a class="a" href="{% url 'home' %}">Back</a>
+  </div>
+</body>
+
+
+<script>
+    $(document).ready(function(){
+        $(".alert").hide(5000);
+    })
+</script>
+
+</html>

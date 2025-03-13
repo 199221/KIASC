@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIASC</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'image/icon.jpg' %}">
+
+    <style>
+        .store{
+            background-color: orangered;
+            padding: 40px 60px;
+            color: black;
+            border-radius: 50px;
+            font-size: 30px;
+ 
+        }
+
+        .view{
+            background-color: gold;
+            padding: 40px 60px;
+            color: black;
+            font-size: 30px;
+            border-radius: 50px;
+ 
+        }
+
+        .back{
+            background-color: black;
+            color: white;
+            padding: 40px 60px;
+            border-radius: 50px;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center; margin-top: 100px;">
+            <a style="text-decoration: none; margin-bottom: 100px;" class="store" href="{% url 'store_data' %}">STORE THE DATA</a><br><br>
+            <a style="text-decoration: none; position: relative; top: 100px;" class="view" href="{% url 'view_data' %}">VIEW THE DATA</a><br><br>
+            <a style="text-decoration: none; position: relative; top: 200px;" class="back" href="{% url 'home' %}">Back</a>
+        </div>
+    </div>
+    
+</body>
+</html>

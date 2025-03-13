@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=,initial-scale=1.0">
+    <title>KIASC</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/28d6173d15.js"></script>
+    <link rel="icon" href="{% static 'image/icon.jpg' %}">
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+             <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+
+
+    <!-- navbar -->
+
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+            <div class="container"> 
+                    <h1 class="navbar-brand" style="font-size: 30px;"><i class="fa-solid fa-building-columns"></i>&nbsp;&nbsp;KIASC</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav ml-auto" style="margin-left: 40px;">
+                        <li ><a id="n" href="#">HOME</a></li>
+                        <li ><a id="n" href="#aboutas">ABOUT</a></li>
+                        <li ><a id="n" href="#" data-bs-toggle="modal" data-bs-target="#login">LOGIN_PAGE</a></li>
+                        <li class="dropdown">
+                            <a id="n"  href="#" data-bs-toggle="dropdown">BRANCH</a>
+                            
+                              <ul class="dropdown-menu" style="text-align: center;">
+                                <li><a class="dropdown-item mb-3" href="{% url 'map' %}"> CHENNAI</a></li>
+                                <li><a class="dropdown-item mb-3" href="{% url 'map' %}"> TRICHY</a></li>
+                                <li><a class="dropdown-item mb-3" href="{% url 'map' %}">THANJAVUR</a></li>
+                                <li><a class="dropdown-item mb-3" href="{% url 'map' %}">SALEM</a></li>
+                                <li><a class="dropdown-item mb-3" href="{% url 'map' %}">MADURAI</a></li>
+                                <li><a class="dropdown-item mb-3" href="{% url 'map' %}">COIMBATORE</a></li>
+                             
+                              </ul>
+                        </li>
+                        <li ><a id="n" href="#contact">CONTACT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+      
+
+
+        <!-- login_page -->
+        <div class="modal fade" id="login" role="dialog" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"  data-bs-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">       
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                            {% endfor %}
+                         {% endif %}
+                        <h4 style="text-align: center;">ADMIN_LOGIN_PAGE</h4>
+                        <br>
+
+                        <form action="{% url 'admin_login' %}" method="POST" autocomplete="off" style="text-align: center;">
+                            {% csrf_token %}
+                            <label for="n" style="color: orangered; font-size: 30px;">ADMIN_NAME</label>
+                            <input style="border: 2px solid black;" type="text" class="form-control" name="student_name" id="n" required><br>
+                            <label for="r" style="color: orangered; font-size: 30px;">ADMIN_PASSWORD</label>
+                            <input style="border: 2px solid black;" type="text" class="form-control" name="student_rool_number" id="r" required><br>
+                            <input style=" background-color: blue; color: white; padding: 10px 80px;" type="submit" value="LOGIN">
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #f30707;"></i> TO Login, You Must Need USERNAME AND PASSWORD</h5>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #f30606;"></i> if someone try  to login without username or password, it will be retuen to the home page</h5>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- college_name -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div><img src="{% static 'image/college background.jpg' %}" alt="" width="100%" height="600px"></div>
+                    
+                    <div class="college_name">
+                        <h1 style="position: relative; bottom: 80px; color: red;">KAMAL INSTITUTE ARTS AND SCIENCE COLLEGE</h1>
+                        <h3 style="position: relative; bottom: 60px; color: rgb(235, 45, 45);">AUTONOMOUS (NAAC -A<sup>++</sup>)</h3>
+                        <h5 style="position: relative; bottom: 40px; color: rgb(17, 15, 15);">TOP 5 COLLEGE IN TAMILNADU</h5>
+                        <input class="search" type="search" placeholder="     SEARCH BOX"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- gallery -->
+            <ul class="collection">
+                <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+                <li><a href="{% url 'video' %}">VIDEOS</a></li>
+                <li><a href="{% url 'map' %}">MAP</a></li>
+                <li><a href="{% url 'feedback' %}">FEEDBACK</a></li>
+            </ul>
+
+
+            <!-- college_logo and c-p-a -->
+            <div class="row" id="cpa">
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <img style="margin-left: 50px;" src="{% static 'image/college logo c-p-a.png' %}" alt=""  width="500px" height="500px">
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6" style="padding-right: 50px;">
+                    <div class="image_cairman">
+                        <img id="chairman" class="rounded-circle"  src="{% static 'image/cairman.jpg' %}" alt="" width="150px" height="150px">
+                        <h3 id="staff">MR.KAMALNATH M.COM., <br>CHAIRMAN</h3>
+                    </div>
+                    <div class="image_principal">
+                        <img id="chairman" class="rounded-circle" src="{% static 'image/principal.jpg' %}" alt="" width="150px" height="150px">
+                        <h3 id="staff">MR.VIJAYKUMAR M.SC., <br>PRINCIPAL</h3>
+                    </div>
+                    <div class="image_admin">
+                        <img id="chairman" class="rounded-circle" src="{% static 'image/admin.jpg' %}" alt="" width="150px" height="150px">
+                        <h3 id="staff">MRS.NIVETHA M.B.A., <br> ADMIN</h3>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- college_intro -->
+        <div class="container-fluid">     
+            <div class="row " id="cpa" style="margin-top: 80px;">
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <div style="margin-left: 20px;">
+                        <dl>
+                            <dt style="color: darkblue; font-size: 30px;">KIASC </dt>
+                            <dd style="line-height: 25px; text-indent:  40px; text-align: left; font-size: 20px;">KIASC College is a premier institution known for its commitment to academic excellence, state-of-the-art infrastructure, 
+                                and experienced faculty. It emphasizes holistic student development,
+                                 offering diverse programs and fostering innovation, creativity, and 
+                                  values. The college's focus on practical learning, research, and career 
+                                  readiness makes it a top choice for aspiring professionals.  </dd>
+                        </dl>
+                        
+                        <dl>
+                            <dt style="color: darkblue; font-size: 30px;">SEREVICE </dt>
+                            <dd style="line-height: 25px; text-indent: 40px; text-align: left; font-size: 20px;">KIASC College provides exceptional services, including well-equipped libraries, modern labs, and interactive classrooms. It offers personalized academic guidance, skill development programs, and career counseling to ensure student success. The college emphasizes extracurricular activities, cultural events, and community engagement, fostering a supportive environment that nurtures talent and prepares students for a bright future.</dd>
+                        </dl>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6">
+                    <img style="margin-left: 0px; margin-top: 30px;" src="{% static 'image/our-c-s image.jpg' %}" alt="" width="500px" height="400px">
+                </div>
+            </div>
+        </div>
+
+        <!-- hr line -->
+        <div style="position: relative; bottom: 100px; color: black;"><hr></div>
+        
+
+        <!-- history -->
+        <div class="row" id="history">
+            <h1 style="margin-bottom: 30px;">HISTORY</h1>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <img src="{% static 'image/college-1980.jpg' %}" alt="" width="300px" height="200px">
+                <h4>1980</h4>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <img src="{% static 'image/college-2000.jpeg' %}" alt="" width="300px" height="200px">
+                <h4>1992</h4>
+
+            </div>
+            <div class="col-sm- 12 col-md-6 col-lg-4">
+                <img src="{% static 'image/college-1992.jpeg' %}" alt="" width="300px" height="200px">
+                <h4>2000</h4>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <img src="{% static 'image/college-2019.jpg' %}" alt="" width="300px" height="200px">
+                <h4>2010</h4>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <img src="{% static 'image/college-2010.jpeg' %}" alt="" width="300px" height="200px">
+                <h4>2019</h4>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <img src="{% static 'image/college-2024.webp' %}" alt="" width="300px" height="200px">
+                <h4>2024</h4>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; ">
+                <h5><span style="color: blue; font-size: 20px;">1980</span> &nbsp;&nbsp;&nbsp;<i style="color: red;" class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;In 1980, the college began with quality education focus.</h5>
+                <h5><span style="color: blue; font-size: 20px;">1983</span> &nbsp;&nbsp;&nbsp;<i style="color: red;" class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;In 1983, joined Bharathidasan University  opportunities.</h5>
+                <h5><span style="color: blue; font-size: 20px;">2000</span> &nbsp;&nbsp;&nbsp;<i style="color: red;" class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;In 2000, college gained autonomy,  academic standards.</h5>
+                <h5><span style="color: blue; font-size: 20px;">2010</span> &nbsp;&nbsp;&nbsp;<i style="color: red;" class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;In 2010, 4,500 students joined our college,  growth on.</h5>
+                <h5><span style="color: blue; font-size: 20px;">2019</span> &nbsp;&nbsp;&nbsp;<i style="color: red;" class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;In 2019 top five college list in tamilnadu in our college</h5>
+                <h5><span style="color: blue; font-size: 20px;">2024</span> &nbsp;&nbsp;&nbsp;<i style="color: red;" class="fa-solid fa-arrow-right"></i>&nbsp;&nbsp;&nbsp;In 2024, NAAC A++ grades  for academic excellence.</h5>
+            </div>
+
+        </div>
+
+
+        <!-- hr -->
+        <div style="position: relative; bottom: 50px; color: black;"><hr></div>
+
+
+        <!-- application -->
+
+        <div class="row" style="text-align: center; position: relative; bottom: 40px; margin-bottom: 40px;">
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <a style="text-decoration: none;" href="#" data-bs-toggle="modal" data-bs-target="#certificate"><h4 style="background-color: green; color: white; border-radius: 20px; padding: 15px;">certificate</h4> </a>
+
+                </div>
+
+                <div class="col-sm-6 col-md-4 col-lg-4 mb4">
+                <a  style="text-decoration: none;" href="{% url 'application_form' %}"><h4 style="background-color: red; color: black; border-radius: 20px; padding: 15px;">application form</h4> </a>
+                    
+                </div>
+
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                <a style="text-decoration: none;" href="{% url 'fees' %}"><h4 style="background-color: blueviolet; color: white; border-radius: 20px; padding: 15px;">fees structure</h4> </a>
+                    
+                </div>
+
+                
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                <a style="text-decoration: none;" href="{% url 'exam_time_table' %}"><h4 style="background-color: yellow; color: black; border-radius: 20px; padding: 15px;">EXAM_TIME_TABLE</h4> </a>
+                    
+                </div>
+    
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                     <a style="text-decoration: none;" href="{% url 'celebrity' %}"><h4 style="background-color: gray; color: white; border-radius: 20px; padding: 15px;">celebrity visit</h4> </a>
+                    
+                </div>
+                
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <a style="text-decoration: none;" href="{% url 'exam_result' %}"><h4 style="background-color: orangered; color: white; border-radius: 20px; padding: 15px;">EXAM_RESULT</h4> </a>
+                    
+                </div>
+        </div>
+
+        <div class="modal fade" id="certificate" role="dialog" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"  data-bs-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">       
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                            {% endfor %}
+                         {% endif %}
+                        <h4 style="text-align: center;">LOGIN_PAGE</h4>
+                        <br>
+
+                        <form action="{% url 'certificate' %}"  method="POST" autocomplete="off" style="text-align: center;">
+                            {% csrf_token %}
+                            <label for="n" style="color: orangered; font-size: 30px;">STUDENT_NAME</label>
+                            <input style="border: 2px solid black;" type="text" class="form-control" name="student_name" id="n" required><br>
+                            <label for="r" style="color: orangered; font-size: 30px;">STUDENT_ROOL_NUMBER</label>
+                            <input style="border: 2px solid black;" type="text" class="form-control" name="student_rool_number" id="r" required><br>
+                            <label for="y" style="color: orangered; font-size: 30px;">WHICH TYPE OF CERTIFICATE</label>
+                            <input style="border: 2px solid black;" type="text" class="form-control" name="certificate" id="y" required><br>
+                            
+                            <input style=" background-color: blue; color: white; padding: 10px 80px;" type="submit" value="SUBMIT">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        
+
+
+        
+        <!-- hr -->
+        <div style="position: relative; bottom: 50px; color: black;"><hr></div>
+
+
+        <!-- rank_holder -->
+        <div style="position: relative; bottom: 30px;margin-left: 30px;margin-right: 30px; background-color: #eb8b99; padding-bottom: 60px; padding-top: 30px;">
+            <h1 style="text-align: center;">RANK HOLDER IN 2024</h1>
+            <div style="display: flex; justify-content: center; margin-top: 30px;">
+                <img src="{% static 'image/b-person-1.jpg' %}" alt=""  width="200px" height="150px">
+                <h5 style="margin-top: 20px; margin-left: 20px;"><span style="color: orangered;">KAMALNATH .S <br>
+                    DEPARTMENT OF COMPUTER</span> <br>This person helped our college achieve <br>1st rank</h5>
+            </div>
+
+            
+            <div style="display: flex; justify-content: center; margin-top: 30px;">
+                <h5 style="margin-top: 20px; margin-left: 20px;"><span style="color: rgb(221, 16, 129);">PRIYA .K <br>
+                    DEPARTMENT OF TAMIL</span> <br>This person helped our college achieve <br>2st rank</h5>
+                <img src="{% static 'image/g-person-6.jpg' %}" alt=""  width="200px" height="150px">
+                
+            </div>
+
+            
+            <div style="display: flex; justify-content: center; margin-top: 30px;">
+                <img src="{% static 'image/b-person-5.jpg' %}" alt=""  width="200px" height="150px">
+                <h5 style="margin-top: 20px; margin-left: 20px;"><span style="color: rgb(8, 214, 26);">SURYA.V <br>
+                    DEPARTMENT OF MATHS</span> <br>This person helped our college achieve <br>3st rank</h5>
+            </div>
+
+        </div>
+
+         
+        <!-- hr line -->
+        <div style="position: relative; bottom: 5px; color: black;"><hr></div>
+
+
+
+        <!-- activity -->
+        <div class="row m-3" id="history" style="position: relative; top: 30px; background-color: #3ff8f8; padding: 40px 0px;">
+
+            <h1 style="text-align: center;">ACTIVITY</h1>
+
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <fieldset style="margin-top: 40px;">
+                    <h1> <i class="fa-solid fa-book"></i></h1>
+                    <h3>LIBRARY</h3>
+                    <p>College libraries provide access to academic resources, study spaces, 
+                        research materials, and educational support services.</p>
+                        <hr>
+                    </fieldset>
+            </div>
+
+
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <fieldset style="margin-top: 40px;">
+                <h1><i class="fa-solid fa-baseball"></i></h1>
+                <h3>SPORT</h3>
+            
+                <p>College sports promote teamwork, physical fitness, competition, 
+                    school spirit, and offer scholarships and career opportunities.</p>
+                    <hr>
+
+                </fieldset>
+            </div>
+
+
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <fieldset style="margin-top: 40px;">
+                <h1><i class="fa-solid fa-child-reaching"></i></h1>
+                <h3>YOGA</h3>
+                <p>College yoga promotes mindfulness, flexibility, stress relief, 
+                    mental focus, physical health, and emotional well-being.</p>
+                    <hr>
+
+                </fieldset>
+            </div>
+
+            
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <fieldset style="margin-top: 40px;">
+                <h1><i class="fa-solid fa-phone-volume"></i></h1>
+                <h3>COMMUNICATION</h3>
+                <p>College communication fosters collaboration, 
+                    critical thinking, public speaking, writing skills, networking, and effective interpersonal interactions.</p>
+                    <hr>
+                    
+                </fieldset>
+
+        
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                    <fieldset style="margin-top: 40px;">
+                        <h1><i class="fa-regular fa-calendar-days"></i></h1>
+                        <h3>EVENTS</h3>
+                        <p>College events encourage community engagement, 
+                            cultural exchange, networking, skill-building, entertainment, and celebration of achievements.</p>
+                        <hr>
+                            
+                    </fieldset>
+                </div>
+    
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                        <fieldset style="margin-top: 40px;">
+                            <h1><i class="fa-solid fa-music"></i></h1>
+                            <h3>CULTURAL</h3>
+                            <p>College cultural activities celebrate diversity,
+                                 promote inclusion, showcase traditions, foster creativity, and enhance community engagement.</p>
+                            <hr>
+
+                        </fieldset>
+        
+                </div>
+    
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <fieldset style="margin-top: 40px;">
+                        <h1><i class="fa-solid fa-desktop"></i></h1>
+                        <h3>LAB</h3>
+                        <p>College lab facilities provide hands-on learning, advanced equipment, 
+                            research opportunities, practical experiments, and skill development.</p>
+                        <hr>
+                            
+                        </fieldset>
+        
+                </div>
+    
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <fieldset style="margin-top: 40px;">
+                        <h1><i class="fa-solid fa-sack-dollar"></i></h1>
+                        <h3>SCHOLARSHIPS</h3>
+                        <p>College scholarships provide financial support, reduce educational costs, 
+                            reward merit, promote access, and encourage academic achievement.</p>
+                        <hr>
+
+                    </fieldset>
+                </div>
+
+                
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <fieldset style="margin-top: 40px;">
+                        <h1><i class="fa-solid fa-person-rifle"></i></h1>
+                        <h3>NCC</h3>
+                        <p>College NCC (National Cadet Corps) of police training fosters discipline, leadership, patriotism,
+                             physical fitness, teamwork, and community service.</p>
+                        <hr>
+
+                    </fieldset>
+               </div>
+        </div>
+
+
+        <!-- hr line -->
+        <div style="margin-top: 70px; color: black;"><hr></div>
+
+
+        <!-- placement -->
+        <div class="row" style="text-align: center; margin-top: 40px; margin: 30px; background-color: white;">
+            <h1 style="text-align: center; margin-bottom: 40px; color: #f70227;">PLACEMENT</h1>
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                <img class="placement_image"  style="margin-bottom: 40px;" src="{% static 'image/zoho.png' %}" alt=""  width="200px" height="150px" >
+
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                <img class="placement_image"  style="margin-bottom: 40px;" src="{% static 'image/wipro.jpeg' %}" alt="" width="200px" height="150px">
+
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                <img class="placement_image"  style="margin-bottom: 40px;" src="{% static 'image/tata.png' %}" alt="" width="200px" height="150px">
+
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                    <img class="placement_image"  style="margin-bottom: 40px;" src="{% static 'image/amazon.jpg' %}" alt="" width="200px" height="150px">
+
+
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                 <img class="placement_image"  style="margin-bottom: 40px;" src="{% static 'image/infosys.jpg' %}" alt="" width="200px" height="150px">
+
+            </div>
+
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                <img class="placement_image"  style="margin-bottom: 40px;" src="{% static 'image/microsoft.jpg' %}" alt=""width="200px" height="150px" >
+
+            </div>
+
+            <p>Our college ensures 100% placement with opportunities in six top-tier multinational companies (MNCs). 
+                We focus on preparing students for success in diverse fields, collaborating with renowned MNCs to provide 
+                excellent career growth. Comprehensive training, skill development, and industry connections ensure our students
+                 achieve their professional aspirations confidently.</p>
+           
+            <marquee behavior="scoll" direction="" scorllamount="50">
+
+                <div style="display: flex;">
+
+                    <div style="display: flex;" id="mark" >
+                        <img class="rounded-circle" src="{% static 'image/b-person-1.jpg' %}" alt="" width="100px" height="100px">
+                        <h4 style=" margin-left: 10px; margin-right: 10px; margin-top: 10px;">MR.KAMALNATH M.COM.,<br> PYTHON DEVELOPER <br>ZOHO</h4>
+                    </div>
+    
+                    <div style="display: flex; position: relative; left: 40px;" id="mark" >
+                        <img class="rounded-circle" src="{% static 'image/b-person-2.jpg' %}" alt="" width="100px" height="100px">
+                        <h4 style=" margin-left: 10px; margin-right: 10px; margin-top: 10px;">MR.AARUMUGAM M.C.A.,<br> JAVA DEVELOPER <br>wipro</h4>
+                    </div>
+    
+                    
+                    <div style="display: flex; position: relative; left: 80px;" id="mark" >
+                        <img class="rounded-circle" src="{% static 'image/g-person-6.jpg' %}" alt="" width="100px" height="100px">
+                        <h4 style=" margin-left: 10px; margin-right: 10px; margin-top: 10px;">MRS.KAVIYA M.S.C.,<br> JAVA DEVELOPER <br>infosys</h4>
+                    </div>
+    
+                    
+                    <div style="display: flex; position: relative; left: 120px;" id="mark" >
+                        <img class="rounded-circle" src="{% static 'image/b-person-4.jpg' %}" alt="" width="100px" height="100px">
+                        <h4 style=" margin-left: 10px; margin-right: 10px; margin-top: 10px;">MR.NAGARAJ B.COM.,<br> JAVA SCRIPT DEVELOPER <br>MICROSOFT</h4>
+                    </div>
+    
+                    
+                    <div style="display: flex; position: relative; left: 160px;" id="mark" >
+                        <img class="rounded-circle" src="{% static 'image/g-person-8.jpg' %}" alt="" width="100px" height="100px">
+                        <h4 style=" margin-left: 10px; margin-right: 10px; margin-top: 10px;">MRS.KANISHKA B.B.A.,<br> REACT DEVELOPER <br>AMAZON</h4>
+                    </div>
+
+                    
+                    <div style="display: flex; position: relative; left: 200px;" id="mark" >
+                        <img class="rounded-circle" src="{% static 'image/b-person-5.jpg' %}" alt="" width="100px" height="100px">
+                        <h4 style=" margin-left: 10px; margin-right: 10px; margin-top: 10px;">MR.VIJAYKUMAR M.TECH.,<br> HR <br>TATA</h4>
+                    </div>
+                    
+    
+                </div>
+            </marquee>
+
+
+            <!-- hr line -->
+            <div style="margin-top: 30px; color: black;"><hr></div>
+
+
+            <!-- contact -->
+            <h1>CONTACT</h1>
+
+            <div id="contact">
+                
+                <div class="row" id="contact">
+                    <div class="col-sm-12 col-md-6 col-lg-3" style="margin-bottom: 70px;">
+                        <h1 style="color: white;">WEBSITE</h1>
+                        <h4><i class="fa-solid fa-globe"></i></h4>
+                        <h4><i class="fa-solid fa-angle-right"></i>www.kiasc.com <br><br>
+                            <i class="fa-solid fa-angle-right"></i>www.kamal.com</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3" style="margin-bottom: 70px;">
+                        <h1 style="color: white;">EMAIL</h1>
+                        <h4><i class="fa-solid fa-envelope"></i></h4>
+                        <h4><i class="fa-solid fa-angle-right"></i>kiasc@gmail.com <br><br>
+                            <i class="fa-solid fa-angle-right"></i>kamal@gmail.com <br><br>
+                            <i class="fa-solid fa-angle-right"></i>iiasc_offical@gmail.com</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3" style="margin-bottom: 70px;">
+                        <h1 style="color: white;">PHONE</h1>
+                        <h4><i class="fa-solid fa-phone-volume"></i></h4>
+                        <h4><i class="fa-solid fa-angle-right"></i>0403-1234-9876 <br><br>
+                            <i class="fa-solid fa-angle-right"></i>82488 86878 <br><br>
+                            <i class="fa-solid fa-angle-right"></i> 12345 67890</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <h1 style="color: white;">ADDRESS</h1>
+                        <h4><i class="fa-solid fa-location-dot"></i></h4>
+                        <h4> panja varna swami, parallel street, <br>
+                            22B, Sannathi St, Srirangam, Thiruvanaikoil, <br>Woraiyur, Tiruchirappalli, <br>
+                            Tamil Nadu  620003</h4>
+
+                    </div class="col-sm-12 col-md-12 col-lg-12" >
+                        <div style="margin-top: 30px; margin-bottom: 20px;">
+                            <h1 style="color: white;">OPENING_TIME</h1>
+                            <h1><i class="fa-regular fa-clock"></i></h1>
+                            <h4>MONDAY  TO  SATURDAY </h4>
+                            <h4>MORNING 9.00AM TO EVENING 5.00 PM</h4>
+                            <h3>SUNDAY - HOLIDAYS</h3>
+                        </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- hr line -->
+            <div style="margin-top: 30px; color: black;"><hr></div>
+
+
+            <!-- about -->
+            <div style="background-color: hsl(217, 23%, 55%); color: white; padding: 30px 0px;" id="aboutas">
+                <h1>ABOUT AS</h1>
+                <p>The KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE (KIASC) is a distinguished institution 
+                    dedicated to delivering quality education in commerce, management, and advanced studies. With a
+                    commitment to academic excellence, IIASC combines innovative teaching methods, experienced faculty,
+                    and state-of-the-art infrastructure to create a vibrant learning environment. The college emphasizes 
+                    holistic development, fostering critical thinking, leadership, and practical skills to prepare students
+                    for global challenges. IIASC also provides opportunities for industry interaction, internships, and co-curricular 
+                    activities, ensuring well-rounded growth. Its focus on academic rigor and 
+                    professional competence makes IIASC a preferred choice for aspiring leaders and professionals.</p>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6" style="margin-bottom: 50px;">
+                        <h1 style="color: red;">FACILITY</h1><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>scholarship</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>bus and van</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>quality water and food</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>sports and ncc</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>spoken_english and hindi</h5><br>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6" >
+                        <h1 style="color: red;">SOCIAL_MEDIA</h1><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>whatsapp</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>instagram</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>youtube</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>linkedin</h5><br>
+                        <h5><i class="fa-regular fa-hand-point-right" style="color: #0d0d0d;"></i>twitter</h5><br>
+                    </div>
+                </div>
+                <div style="font-size: 50px; display: flex; justify-content: space-around;"  >
+                    <i id="icon" class="fa-brands fa-whatsapp" style="color: hsl(110, 88%, 14%);"></i>
+                    <i id="icon" class="fa-brands fa-instagram" style="color:rgb(247, 57, 120);"></i>
+                    <i id="icon" class="fa-brands fa-youtube" style="color: #f70227;"></i>
+                    <i id="icon" class="fa-brands fa-linkedin" style="color: #1962e1;"></i>
+                    <i id="icon" class="fa-brands fa-twitter" style="color: #050505;"></i>
+                </div>
+            </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<script>
+    $(document).ready(function(){
+        $('.alert').hide(3000);
+    });
+</script>
+</html> 

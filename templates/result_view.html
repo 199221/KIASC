@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIASC</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/28d6173d15.js"></script>
+    <link rel="icon" href="{% static 'image/icon.jpg' %}">
+    <style>
+    table,tr,th,td{
+        border-collapse: collapse;
+        text-align: center;
+        width: 300px;
+        height: 70px;
+        margin-top: 30px;
+        margin-left: 50px;
+    }
+    th{
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+    }
+    td{
+        color: white;
+        font-size: 20px;
+    }
+
+    .delete{
+        text-decoration: none;
+        background-color: red;
+        color: black;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+
+    
+    .update{
+        text-decoration: none;
+        background-color: rgb(24, 245, 17);
+        color: black;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+</style>
+</head>
+<body style="background-color: sienna;">  
+    
+    {% if messages %}
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="text-align: center;">
+        <h1 class="text-primary">KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE</h1>
+        <h3 class="text-danger">AUTONOMOUS (NACC A<sup>++</sup>)</h3>
+        <h3 class="text-dark">ALL RESULT RECORD</h3> <br>
+    </div>
+    
+    <table border="3px">
+        <tr>
+            <th>S,NO</th>
+            <th>ROOL_NUMBER</th>
+            <th>NAME</th>
+            <th>DEPARTMENT</th>
+            <th>PAPER-1</th>
+            <th>PAPER-2</th>
+            <th>PAPER-3</th>
+            <th>PAPER-4</th>
+            <th>PAPER-5</th>
+            <th>TOTAL</th>
+            <th>RESULT</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        {% for i in z %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.ROOL_NUMBER}}</td>
+            <td>{{i.NAME}}</td>
+            <td>{{i.DEPARTMENT}}</td>
+            <td>{{i.PAPER_1}}</td>
+            <td>{{i.PAPER_2}}</td>
+            <td>{{i.PAPER_3}}</td>
+            <td>{{i.PAPER_4}}</td>
+            <td>{{i.PAPER_5}}</td>
+            <td>{{i.TOTAL}}</td>
+            <td>{{i.RESULT}}</td>
+            <td><a class="update" href="updateresult/{{i.id}}">UPDATE</a></td>
+            <td><a class="delete" href="deleteresult/{{i.id}}">DELETE</a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+            $('.alert').hide(3000);
+        });
+    </script>
+</html>

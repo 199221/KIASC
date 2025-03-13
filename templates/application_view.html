@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIASC</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/28d6173d15.js"></script>
+    <link rel="icon" href="{% static 'image/icon.jpg' %}">
+</head>
+
+<style>
+    table,tr,th,td{
+        border-collapse: collapse;
+        text-align: center;
+        width: 500px;
+        height: 70px;
+        margin-top: 50px;
+    }
+    th{
+        background-color: black;
+        color: white;
+        padding: 10px 30px;
+    }
+    td{
+        color: rgb(44, 4, 219);
+        font-size: 20px;
+    }
+
+    .delete{
+        text-decoration: none;
+        background-color: red;
+        color: black;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+</style>
+
+<body style="background-color: chartreuse;"> 
+    
+    {% if messages %}
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div style="text-align: center;">
+        <h1 class="text-primary">KAMAL INSTITUDE ARTS AND SCIENCE COLLEGE</h1>
+        <h3 class="text-danger">AUTONOMOUS (NACC A<sup>++</sup>)</h3>
+        <h3 class="text-dark">ALL STUDENT APPLICATION RECORD</h3> <br>
+    </div>
+
+    
+    <table border="3px">
+        <tr>
+            <th>S,NO</th>
+            <th>STUDENT_NAME</th>
+            <th>FATHER_NAME</th>
+            <th>GENDER</th>
+            <th>DATE_OF_BIRTH</th>
+            <th>AGE</th>
+            <th>RELIGION</th>
+            <th>BLOOD_GROUP</th>
+            <th>ADHAR_CARD_NUMBER</th>
+            <th>SSLC_MARK</th>
+            <th>HCL_MARK</th>
+            <th>DEGREE</th>
+            <th>COURSE</th>
+            <th>STUDENT_PHONE_NUMBER</th>
+            <th>PARENTS_PHONE_NUMBER</th>
+            <th>EMAIL_ID</th>
+            <th>PASSWORD</th>
+            <th>ADDRESS</th>
+            <th>DELETE</th>
+        </tr>
+        {% for i in z %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.STUDENT_NAME}}</td>
+            <td>{{i.FATHER_NAME}}</td>
+            <td>{{i.GENDER}}</td>
+            <td>{{i.DATE_OF_BIRTH}}</td>
+            <td>{{i.AGE}}</td>
+            <td>{{i.RELIGION}}</td>
+            <td>{{i.BLOOD_GROUP}}</td>
+            <td>{{i.ADHAR_CARD_NUMBER}}</td>
+            <td>{{i.SSLC_MARK}}</td>
+            <td>{{i.HCL_MARK}}</td>
+            <td>{{i.DEGREE}}</td>
+            <td>{{i.COURSE}}</td>
+            <td>{{i.STUDENT_PHONE_NUMBER}}</td>
+            <td>{{i.PARENTS_PHONE_NUMBER}}</td>
+            <td>{{i.EMAIL_ID}}</td>
+            <td>{{i.PASSWORD}}</td>
+            <td>{{i.ADDRESS}}</td>
+            <td><a class="delete" href="deleteapp/{{i.id}}">DELETE</a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
+    <script>
+    $(document).ready(function(){
+        $('.alert').hide(3000);
+    });
+</script>
+
+</html>
